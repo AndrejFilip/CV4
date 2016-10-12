@@ -75,6 +75,17 @@ void adc_init(void)
  ADC_SoftwareStartConv(ADC1);
 }
 
+void Led_init(){
+	GPIO_InitTypeDef struktura;
+	     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+	     struktura.GPIO_Mode  = GPIO_Mode_OUT;
+	     struktura.GPIO_OType = GPIO_OType_PP ;
+	     struktura.GPIO_PuPd = GPIO_PuPd_UP ;
+	     struktura.GPIO_Speed = GPIO_Speed_40MHz ;
+	     struktura.GPIO_Pin = GPIO_Pin_5;
+	     GPIO_Init(GPIOA, &struktura);
+}
+
 int main(void)
 {
 	int AD_value = 0;
