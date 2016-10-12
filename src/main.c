@@ -90,6 +90,7 @@ int main(void)
 {
 	int AD_value = 0;
 	adc_init();
+	Led_init();
 
   int i = 0;
   /**
@@ -116,7 +117,10 @@ int main(void)
 	 ADC_SoftwareStartConv(ADC1);
 	  while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC)){}
 	  AD_value=ADC_GetConversionValue(ADC1);
-
+	  GPIO_Write(GPIOA, 0b1 << 5);
+		  for(j = 1;j < AD_value*20;j++){}
+		  GPIO_Write(GPIOA, 0b0 << 5);
+		  for(j = 1;j < AD_value*20;j++){}
   }
   return 0;
 }
